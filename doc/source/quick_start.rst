@@ -168,6 +168,16 @@ Upload file
     <b2sdk.file_version.FileVersionInfo at 0x7fc8cd560550>
 
 
+Upload Bytes
+============
+
+.. code-block:: python
+
+    >>> bucket = b2_api.get_bucket_by_name(bucket_name)
+    >>> bucket.upload_bytes(b'hello world', 'hello.txt')
+    <b2sdk.file_version.FileVersionInfo at 0x7f56bc5a5d68>
+
+
 Download file
 =============
 
@@ -302,18 +312,35 @@ Inspect account info
 
 .. code-block:: python
 
-    TODO
+    >>> account_info = b2_api.account_info
 
-    account_info = b2_api.account_info
+    >>> account_info.get_account_id()
+    '4a5b6c7d8e9f'
 
-    accountId = account_info.get_account_id()
+    >>> account_info.get_allowed()
+    {'bucketId': None,
+     'bucketName': None,
+     'capabilities': ['listKeys',
+      'writeKeys',
+      'deleteKeys',
+      'listBuckets',
+      'writeBuckets',
+      'deleteBuckets',
+      'listFiles',
+      'readFiles',
+      'shareFiles',
+      'writeFiles',
+      'deleteFiles'],
+     'namePrefix': None}
 
-    allowed = account_info.get_allowed()
+    >>> account_info.get_application_key()
+    '001b8e23c26ff6efb941e237deb182b9599a84bef7'
 
-    applicationKey = account_info.get_application_key()
+    >>> account_info.get_account_auth_token()
+    '4_0024354789be08d00000000001_26ff6efb_eb182b_acct_Ff6efb941e237deb182b9599a8'
 
-    accountAuthToken = account_info.get_account_auth_token()
+    >>> account_info.get_api_url()
+    'https://api002.backblazeb2.com'
 
-    apiUrl = account_info.get_api_url()
-
-    downloadUrl = account_info.get_download_url()
+    >>> account_info.get_download_url()
+    'https://f002.backblazeb2.com'
